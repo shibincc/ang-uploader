@@ -1,0 +1,22 @@
+.dropzone{
+	height: auto;
+	min-height: 200px;
+	width:100%;
+	background: #FFF;
+	padding: 10px
+}
+.dropzone-wrap{
+	border: 5px dotted #ccc;
+	padding:25px 20px 20px 20px ;
+}
+.dropzone .drop-box{
+	height: 100px;
+	text-align: center;
+}
+
+.fd{
+	min-height:40px;
+	background:#efefef;
+	margin-bottom: 10px;
+	padding:10px;
+}
