@@ -1,0 +1,89 @@
+<html ng-app="sbc_uploader">
+	<head>
+		<title>Uploader</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap styles -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<!-- Generic page styles -->
+		<link rel="stylesheet" href="css/style.css">
+		<!-- blueimp Gallery styles -->
+		<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+		<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+		<link rel="stylesheet" href="css/jquery.fileupload.css">
+		<link rel="stylesheet" href="css/jquery.fileupload-ui.css">		
+		<link rel="stylesheet" href="css/cropper.css">		
+	</head>
+	<body ng-controller="UploaderController">
+		<div class="navbar navbar-default ">
+		    <div class="container">
+		        <div class="navbar-header"></div>
+		        <div class="navbar-collapse collapse">
+		            <ul class="nav navbar-nav">
+		            	<li></li>
+		            </ul>
+		        </div>
+		    </div>
+		</div>
+		<div class="container">
+		   
+		<button class="btn btn-success" add-file upload-config = "uploadConfig">Add file</button>
+		<div ng-controller = "cropperController">
+			<button class="btn btn-info" upload-config = "uploadConfig" ng-click="initCropper(1)">Resize</button>		
+			<button class="btn btn-info" upload-config = "uploadConfig" ng-click="initCropper(2)">Resize</button>		
+			<button class="btn btn-info" upload-config = "uploadConfig" ng-click="getCoordinates()">Get Data</button>
+			<button class="btn btn-info" upload-config = "uploadConfig" ng-click="cancelCrop()">clear</button>
+			<input type="text" ng-model="pos"/>			
+		</div>
+		
+		<div id="crop-container1">
+			<div>
+				<
+			</div>
+			<div class="img-container" data-id="vs-crop">
+	          <img src="assets/img/Desert.jpg" alt="Picture">
+	        </div>
+	    </div>
+	    <div id="crop-container2">
+			<div class="img-container" data-id="vs-crop">
+	          <img src="assets/img/Penguins.jpg" alt="Picture">
+	        </div>
+	    </div>
+
+		<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+		<script src="js/vendor/jquery.ui.widget.js"></script>
+		<!-- The Templates plugin is included to render the upload/download listings -->
+		<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.js"></script>
+		<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+		<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+		<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+		<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+		<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- blueimp Gallery script -->
+		<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+		<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+		<script src="js/jquery.iframe-transport.js"></script>
+		<!-- The basic File Upload plugin -->
+		<script src="js/jquery.fileupload.js"></script>
+		<!-- The File Upload processing plugin -->
+		<script src="js/jquery.fileupload-process.js"></script>
+		<!-- The File Upload image preview & resize plugin -->
+		<script src="js/jquery.fileupload-image.js"></script>
+		<!-- The File Upload audio preview plugin -->
+		<script src="js/jquery.fileupload-audio.js"></script>
+		<!-- The File Upload video preview plugin -->
+		<script src="js/jquery.fileupload-video.js"></script>
+		<!-- The File Upload validation plugin -->
+		<script src="js/jquery.fileupload-validate.js"></script>
+		<!-- The File Upload user interface plugin -->
+		<script src="js/jquery.fileupload-ui.js"></script>
+		<!-- The File Upload Angular JS module -->
+		<script src="js/cropper.js"></script>
+		<script src="js/upload.js"></script>
+		<script src="js/crop.js"></script>
+	</body>
+
+</html>
