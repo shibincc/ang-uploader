@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+	<!-- Latest compiled and minified JavaScript -->
+	<link rel="stylesheet" type="text/css" href="css/preview.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" >
+		var tpl = '<div  class="row preview-wrap">'+
+					'<div class="col-md-1 col-sm-1 col-xs-3">'+
+						'<div class="image ">'+
+							'<img src="{{img-src}}">'+
+						'</div>'+
+					'</div>'+
+					'<div class="col-md-9 col-sm-9 col-xs-8 ">'+
+						'<p>'+
+							'<b>{{img-name}}</b>'+
+						'</p>'+
+					'</div>'+
+					'<div class="col-md-1 col-sm-1 col-xs-1 ">'+
+						'<a class="delete-link zoom">X</a>'+
+					'</div>'+
+				'</div>'
+		var imgSrc = "img/wh.jpg";
+		var imgName = "Test Image.jpg";
+		function appendTemplate(){
+			var thisTpl = tpl.slice(0);
+			thisTpl = thisTpl.replace("{{img-src}}",imgSrc).replace("{{img-name}}",imgName);
+			$("#holder").append(thisTpl);
+		}
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+	  	<div class="container-fluid">
+	    	<div class="navbar-header">
+	      		<a class="navbar-brand" href="#">
+	      		</a>
+	    	</div>
+	  	</div>
+	</nav>
+	<div class="container main" id="preview-tpl">
+		<button class="btn btn-info" type="button" onClick="appendTemplate()">+</button>
+		<div  class="row preview-wrap">
+			<div class="col-md-1 col-sm-1 col-xs-3">
+				<div class="image ">
+					<img src="img/wh.jpg">
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-9 col-xs-8 ">
+				<p>
+					<b>Name</b>
+				</p>
+			</div>
+			<div class="col-md-1 col-sm-1 col-xs-1 ">
+				<a class="delete-link zoom">X</a>
+			</div>
+		</div>
+		<div id="preview-tpl" class="row preview-wrap">
+			<div class="col-md-1 col-sm-1 col-xs-3">
+				<div class="image ">
+					<img src="img/wh.jpg">
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-9 col-xs-8 ">
+				<p>
+					<b>Name</b>
+				</p>
+			</div>
+			<div class="col-md-1 col-sm-1 col-xs-1 ">
+				<a class="delete-link zoom">X</a>
+			</div>
+		</div>
+		<div id="holder"></div>
+	</div>
+</body>
+</html>

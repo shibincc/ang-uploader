@@ -1,0 +1,53 @@
+body{
+	background: #ddd
+}
+.preview-wrap{
+	background: #fff;
+	padding: 8px
+}
+
+.image{
+	height: 70px;
+	width: 70px;
+}
+.preview-wrap{
+	margin-bottom: 6px
+}
+.image img{
+	height: 100%;
+	width:100%;
+}
+
+.delete-link{
+	color: red;
+	text-decoration: none;
+	cursor: pointer;
+}
+.delete-link:hover{
+	color: #EF4C4C;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.zoom { 
+
+float:left;
+z-index: 10;
+    -webkit-transition: all .3s ease-out; 
+    -moz-transition: all .3s ease-out; 
+    -o-transition: all .3s ease-out; 
+    transition: all .3s ease-out; 
+-webkit-backface-visibility: hidden;
+-webkit-perspective: 1000;
+}
+
+.zoom:hover { 
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+    M11=2, M12=-0, M21=0, M22=2);
+  
+}
