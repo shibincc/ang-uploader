@@ -86,6 +86,8 @@
 			    };
 			 	if(this.cropper){
 			 		this.cropper.crop();
+			 		this.image.classList.add("cropper-hidden");
+					angular.element(this.container).find(".cropper-container").removeClass("cropper-hidden")
 			 	}else{
 					this.cropper = new Cropper(this.image, this.options);		 		
 			 	}
@@ -101,7 +103,9 @@
 			},
 			clear : function(){
 				try{
-					this.cropper.clear()
+					this.cropper.clear();
+					this.image.classList.remove("cropper-hidden");
+					angular.element(this.container).find(".cropper-container").addClass("cropper-hidden")
 				}catch(e){
 					console.log("cropper not initialized");
 				}
@@ -114,9 +118,14 @@
 		    return typeof obj === 'undefined';
 		}
 
+		function getCropper(){
+			return new vsCropper();
+		}
+
 		var exposedAPIs = {
 
-			vsCropper:vsCropper
+			vsCropper:vsCropper,
+			getCropper:getCropper
 		};
 		return exposedAPIs;	
 	}
@@ -129,8 +138,8 @@
 	cropperController.$inject = ['$scope','vsCropperService'];
 	
 	function cropperController($scope,$$vsCropperService){	
-		$scope.crop1 = new $$vsCropperService.vsCropper();					
-		$scope.crop2 = new $$vsCropperService.vsCropper();
+		$scope.crop1 = new $$vsCropperService.getCropper();					
+		$scope.crop2 = new $$vsCropperService.getCropper();
 		$scope.initCropper = function(type){
 			if(type == 1){
 				$scope.crop1.init({
@@ -146,6 +155,7 @@
 
 		$scope.getCoordinates = function(){
 			$scope.pos = $scope.crop1.getCoordinates();
+			console.log($scope.pos)
 		}
 
 		$scope.cancelCrop = function(){
