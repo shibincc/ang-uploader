@@ -1,0 +1,32 @@
+<style type="text/css">
+	.crop-holder{
+
+	    height: 100%;
+	    padding: 17px;
+	    text-align: center;
+		width: 100%;
+	}
+	.crop-holder .crop-image-holder{
+		height:95%;
+		width:100%;
+	}
+	.crop-holder .crop-image{
+		height:100%;
+		width:100%;
+	}
+	.crop-holder .crop-button{
+		height: 5%;
+    	padding-top: 10px;
+    	text-align: right;
+	}
+</style>
+<div class="crop-holder" ng-controller="CropDialogController as vmCrop" id="crop-img">
+	<div class="crop-image-holder" id="crop-img-container"> 
+		<img src="{{vmCrop.imageUrl}}" class="crop-image">		
+	</div>
+	<div class="crop-button">
+		<button class="vs-btn act-prim">Done</button>
+		<button class="vs-btn act-def" ng-click="vmCrop.close()">Cancel</button>
+	</div>
+
+</div>

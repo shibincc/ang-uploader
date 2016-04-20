@@ -1,0 +1,143 @@
+<style type="text/css">
+    .dragover{
+        border: 5px dotted #ccc
+    }
+
+
+    .preview-wrap{
+        background: #fff;
+        padding: 8px
+    }
+
+    .image{
+        height: 45px;
+        width: 45px;
+    }
+    .preview-wrap{
+        margin-bottom: 6px
+    }
+    .image img{
+        height: 100%;
+        width:100%;
+    }
+
+    .delete-link{
+        color: red;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .delete-link:hover{
+        color: #EF4C4C;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .zoom { 
+
+    float:left;
+    z-index: 10;
+        -webkit-transition: all .3s ease-out; 
+        -moz-transition: all .3s ease-out; 
+        -o-transition: all .3s ease-out; 
+        transition: all .3s ease-out; 
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    }
+
+    .zoom:hover { 
+        -moz-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        transform: scale(1.2);
+        -ms-transform: scale(1.2);
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+        M11=2, M12=-0, M21=0, M22=2);
+      
+    }
+    #prv-img{
+        padding:10px;
+    }
+</style>
+<div ng-controller ="ImageUploadController">
+    <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <h3> Image Upload  Demo</h3>
+        <div class = "acc-image-holder">
+            <div class="form-group row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label for="accountname" class="control-label" translate>I18N_ACCOUNT.DETAIL.LGO</label>
+                    <div class="vg-img-holder acc-logo">
+                   <img src="{{imageUrl}}" class="img-responsive img-thumbnail" alt="Responsive image" vs-err-src="     DEF_ACC_IMG_LARGE"/>
+                    <button class="vs-btn act-prim sm-fab" ng-click="doBrowse()">
+                        <span class="material-icons">attachment</span>
+                    </button>
+                    </div>
+                </div>           
+            </div>
+            <div class="form-group row"> </div>
+            <div id="upload-box" style="visibility: hidden; height: 0px; width: 0px;"></div>
+            <div id="upload-box-icon" style="visibility: hidden; height: 0px; width: 0px;"></div>
+        </div>
+    </div> -->
+
+    <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="acc-img">
+        <h3> New Image Uploader  Demo</h3>
+        <div class = "acc-image-holder">
+            <div class="form-group row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label for="accountname" class="control-label" translate>I18N_ACCOUNT.DETAIL.LGO</label>
+                    <div class="vg-img-holder acc-logo">
+                   <img src="{{imageUrl}}" class="img-responsive img-thumbnail" alt="Responsive image" vs-err-src=" DEF_ACC_IMG_LARGE"/>
+                    <button class="vs-btn act-prim sm-fab" vs-upload upload-config = "config">
+                        <span class="material-icons">attachment</span>
+                    </button>
+                    </div>
+                </div>               
+            </div>             
+        </div>
+    </div> -->
+   <!--  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="fd-img">
+       <h3> New Image Uploader  Demo</h3>
+       <div class = "acc-image-holder">
+           <div class="form-group row">
+               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                   <div class="vg-img-holder acc-logo">
+                   <button class="vs-btn act-prim sm-fab" vs-upload upload-config = "newconfig">
+                       <span class="material-icons">attachment</span>
+                   </button>
+                   </div>
+               </div>               
+           </div>             
+       </div>
+   </div> -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="prv-img" style="background:#ddd">
+        <h4> 
+            New Uploader with grid preview  
+            <button class="vs-btn act-prim sm-fab" vs-upload upload-config = "newconfig">
+                <span class="material-icons">attachment</span>
+            </button>
+        </h4>       
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="acc-img">
+        <h4> New Image Uploader  Demo</h4>
+        <div class = "acc-image-holder">
+            <div class="form-group row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label for="accountname" class="control-label" translate>I18N_ACCOUNT.DETAIL.LGO</label>
+                    <div class="vg-img-holder acc-logo" id="img-container">
+                        <img src="{{imageUrl}}" class="img-responsive img-thumbnail" alt="Responsive image" vs-err-src=" DEF_ACC_IMG_LARGE"/>
+                        <button class="vs-btn act-prim sm-fab" style="right:50px" ng-click="cropImage()">
+                            <span class="material-icons">crop</span>
+                        </button>
+                        <button class="vs-btn act-prim sm-fab" vs-upload upload-config = "config">
+                            <span class="material-icons">attachment</span>
+                        </button>
+                    </div>
+                </div>               
+            </div>
+            <button class="btn btn-info" upload-config = "uploadConfig" ng-click="initCropper(1)">Resize</button>       
+            <button class="btn btn-info" upload-config = "uploadConfig" ng-click="getCoordinates()">Get Data</button>
+            <button class="btn btn-info" upload-config = "uploadConfig" ng-click="cancelCrop()">clear</button>
+            <input type="text" ng-model="pos"/>             
+        </div>
+    </div>
+</div>
