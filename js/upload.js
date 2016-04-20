@@ -17,7 +17,7 @@
 			init : init,
 			browseFile:browseFile
 		};
-		var gateway = "/filegateway";
+		var gateway = "";
 
 		var uploadPreviewTpl =  '<script id="template-upload" type="text/x-tmpl">'+'{% for (var i=0, file; file=o.files[i]; i++) { %}'+
 								    '<tr class="template-upload fade">'+
@@ -102,7 +102,7 @@
 			onUploadSuccess : null,
 			onUploadFail :null,
 			TYPE_ANONYMOUS : "anonymous",
-			TYPE_AUTH : "authenticated"
+			TYPE_AUTH : "authenticated",
 		};
 				
 		return exposedAPIs;
@@ -216,7 +216,7 @@
 			params = params || {};
 			var fileUploadConfig ={
 				//fileupload config
-				url : gateway,
+				
 	 			dropZone:params.dropZone || $(params.formEl),
 	 			loadImageMaxFileSize : params.config.MAX_FILE_SIZE,
 	 			beforeSend: function(xhr, data){
@@ -224,6 +224,9 @@
 	 			}
 
 	 		};
+	 		if(gateway){
+	 			fileUploadConfig.url = gateway;
+	 		}
 
 	 		if(typeof params.config.options !== "undefined"){
 				fileUploadConfig = angular.extend(fileUploadConfig, params.config.options);
@@ -335,7 +338,7 @@
         
         var dropEl = $("#dropzone");
         $scope.config = {          
-            formEl  :  $('#fileupload'),
+            //formEl  :  $('#fileupload'),
         };
               
         $scope.fdList = [
@@ -389,9 +392,9 @@
 		function linkFunction(scope, element, attrs){
 			element;
 			scope.uploadConfig.thisEl = element;
-			scope.uploadConfig.hidefileBrowse = true;
+			scope.uploadConfig.hidefileBrowse = scope.config.hidefileBrowse || false;
 			scope.uploadConfig.options = {
-				autoUpload : true,
+				autoUpload :  scope.config.autoUpload || false,
 
 			};
 			$$vsUploader.init(scope.uploadConfig);
@@ -406,7 +409,7 @@
 	function AddFileController($scope){
 		//$$vsUploader.init();
 		$scope.uploadConfig = angular.extend({},$scope.config);
-
+		
 	}
 })(); 
 
@@ -448,16 +451,55 @@
 
 		}
 	}
-	VsFdController.$inject = ['$scope','vsUploader'];
+	VsFdController.$inject = ['$scope','vsUploader','testService'];
 
-	function VsFdController($scope,$$vsUploader){
+	function VsFdController($scope,$$vsUploader,testService){
 		//$$vsUploader.init();
 		debugger;
-		$scope.fd;
 		$scope.uploadConfig = {
 			container:angular.element("#fd-"+$scope.fd.id)
 		};
+
+		$scope.SHOW = testService.get();
+		$scope.$watch(function(){return $scope.SHOW},function(newVal,oldVal){
+			if(newVal.SHOW !== $scope.fd.id){
+				$scope.isShow = false;				
+			}
+		},true)
+		$scope.isShow  = false;
+		$scope.show = function(){
+			$scope.isShow = true;
+			testService.set($scope.fd.id);
+		}
 		//$vsUploader.init($scope.uploadConfig);
 
+	}
+})(); 
+
+(function () {
+	"use strict";
+	angular
+		.module("sbc_uploader")
+		.service("testService",testService);
+	testService.$inject = [];
+	
+	function testService(){
+		var exposedAPIs = {
+			set : set,
+			get : get
+		};
+		var a = {
+			SHOW : ""
+		};
+		return exposedAPIs;
+		/////////////////////////////
+
+		function set(value){
+			a.SHOW = value;
+		}
+
+		function get(){
+			return a;
+		}
 	}
 })(); 
